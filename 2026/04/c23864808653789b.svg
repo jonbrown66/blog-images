@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.7"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#fbbf24"/>
+    </marker>
+    <style>
+      .title{font:700 34px 'JetBrains Mono', monospace; fill:#e2e8f0}
+      .subtitle{font:500 16px 'JetBrains Mono', monospace; fill:#94a3b8}
+      .label{font:700 18px 'JetBrains Mono', monospace; fill:#e2e8f0}
+      .sub{font:500 12px 'JetBrains Mono', monospace; fill:#cbd5e1}
+      .mini{font:500 11px 'JetBrains Mono', monospace; fill:#94a3b8}
+      .box-title{font:700 20px 'JetBrains Mono', monospace; fill:#f8fafc}
+      .box-sub{font:500 12px 'JetBrains Mono', monospace; fill:#cbd5e1}
+      .legend{font:600 12px 'JetBrains Mono', monospace; fill:#cbd5e1}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)" opacity="0.45"/>
+  <text x="70" y="72" class="title">browser-harness vs browser-use vs Playwright</text>
+  <text x="70" y="102" class="subtitle">Three layers of browser automation: runtime, agent framework, deterministic automation</text>
+
+  <!-- arrows behind -->
+  <path d="M 340 280 C 420 280, 450 280, 520 280" stroke="#22d3ee" stroke-width="3" fill="none" marker-end="url(#arrow-cyan)" opacity="0.9"/>
+  <path d="M 340 505 C 420 505, 450 505, 520 505" stroke="#34d399" stroke-width="3" fill="none" marker-end="url(#arrow-emerald)" opacity="0.9"/>
+  <path d="M 340 730 C 420 730, 450 730, 520 730" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrow-amber)" opacity="0.9"/>
+
+  <path d="M 1060 280 C 1140 280, 1160 280, 1235 280" stroke="#22d3ee" stroke-width="3" fill="none" marker-end="url(#arrow-cyan)" opacity="0.9"/>
+  <path d="M 1060 505 C 1140 505, 1160 505, 1235 505" stroke="#34d399" stroke-width="3" fill="none" marker-end="url(#arrow-emerald)" opacity="0.9"/>
+  <path d="M 1060 730 C 1140 730, 1160 730, 1235 730" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrow-amber)" opacity="0.9"/>
+
+  <!-- left column -->
+  <rect x="70" y="170" width="270" height="220" rx="14" fill="#0f172a" stroke="#22d3ee" stroke-width="1.8"/>
+  <text x="95" y="210" class="box-title">Input Model</text>
+  <text x="95" y="242" class="label">browser-harness</text>
+  <text x="95" y="268" class="sub">真实 Chrome + CDP websocket</text>
+  <text x="95" y="292" class="sub">stdin Python snippet</text>
+  <text x="95" y="316" class="sub">LLM 可直接修改 helpers.py</text>
+  <text x="95" y="354" class="mini">关键词: self-healing / real browser / thin harness</text>
+
+  <rect x="70" y="395" width="270" height="220" rx="14" fill="#0f172a" stroke="#34d399" stroke-width="1.8"/>
+  <text x="95" y="435" class="box-title">Input Model</text>
+  <text x="95" y="467" class="label">browser-use</text>
+  <text x="95" y="493" class="sub">Task + LLM + BrowserSession</text>
+  <text x="95" y="517" class="sub">Structured action schema</text>
+  <text x="95" y="541" class="sub">DOM snapshot + screenshot context</text>
+  <text x="95" y="579" class="mini">关键词: agent loop / tools / watchdogs / cloud</text>
+
+  <rect x="70" y="620" width="270" height="220" rx="14" fill="#0f172a" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="95" y="660" class="box-title">Input Model</text>
+  <text x="95" y="692" class="label">Playwright</text>
+  <text x="95" y="718" class="sub">Engineer-written script / tests</text>
+  <text x="95" y="742" class="sub">Locator + assertion + context</text>
+  <text x="95" y="766" class="sub">Deterministic automation primitives</text>
+  <text x="95" y="804" class="mini">关键词: reliability / testing / trace viewer</text>
+
+  <!-- middle column -->
+  <rect x="520" y="150" width="540" height="260" rx="16" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="2"/>
+  <text x="550" y="195" class="box-title">Execution Core</text>
+  <text x="550" y="232" class="label">daemon.py + helpers.py + admin.py</text>
+  <text x="550" y="262" class="sub">• daemon 持有 CDP session，Unix socket 暴露极简 JSON 协议</text>
+  <text x="550" y="288" class="sub">• helpers 提供 goto / click / screenshot / js / upload_file 等原语</text>
+  <text x="550" y="314" class="sub">• 失败时，不是等框架升级，而是 agent 现场补 helper 或 domain skill</text>
+  <text x="550" y="352" class="mini">形态：极薄 runtime，强调 agent 自进化</text>
+
+  <rect x="520" y="375" width="540" height="260" rx="16" fill="rgba(6,78,59,0.35)" stroke="#34d399" stroke-width="2"/>
+  <text x="550" y="420" class="box-title">Execution Core</text>
+  <text x="550" y="457" class="label">Agent / BrowserSession / Tools / DOM Serializer</text>
+  <text x="550" y="487" class="sub">• Agent 负责任务规划、loop detection、judge、fallback</text>
+  <text x="550" y="513" class="sub">• BrowserSession 统一 cloud/local browser 生命周期</text>
+  <text x="550" y="539" class="sub">• Tools 暴露结构化动作，DOM 序列化给 LLM 可读上下文</text>
+  <text x="550" y="577" class="mini">形态：完整 agent framework，适合复杂开放式网页任务</text>
+
+  <rect x="520" y="600" width="540" height="260" rx="16" fill="rgba(120,53,15,0.28)" stroke="#fbbf24" stroke-width="2"/>
+  <text x="550" y="645" class="box-title">Execution Core</text>
+  <text x="550" y="682" class="label">Locator / Context / Auto-wait / Trace</text>
+  <text x="550" y="712" class="sub">• locator 体系 + actionability checks 提高确定性</text>
+  <text x="550" y="738" class="sub">• browser context 隔离用例，trace viewer 做可回放调试</text>
+  <text x="550" y="764" class="sub">• 可作为测试框架，也可作为底层自动化库被上层 agent 调用</text>
+  <text x="550" y="802" class="mini">形态：工业级浏览器自动化底座</text>
+
+  <!-- right column -->
+  <rect x="1235" y="170" width="295" height="220" rx="14" fill="#0f172a" stroke="#22d3ee" stroke-width="1.8"/>
+  <text x="1260" y="210" class="box-title">Best Fit</text>
+  <text x="1260" y="244" class="label">真实浏览器协作</text>
+  <text x="1260" y="270" class="sub">• 已登录站点继续操作</text>
+  <text x="1260" y="294" class="sub">• Coding agent 边跑边补能力</text>
+  <text x="1260" y="318" class="sub">• 快速原型 / agent runtime 研究</text>
+  <text x="1260" y="356" class="mini">风险：稳定性与复现性较弱</text>
+
+  <rect x="1235" y="395" width="295" height="220" rx="14" fill="#0f172a" stroke="#34d399" stroke-width="1.8"/>
+  <text x="1260" y="435" class="box-title">Best Fit</text>
+  <text x="1260" y="469" class="label">开放式浏览器 Agent</text>
+  <text x="1260" y="495" class="sub">• 多步网页任务</text>
+  <text x="1260" y="519" class="sub">• cloud browser / stealth / profile</text>
+  <text x="1260" y="543" class="sub">• 自主规划与复杂执行</text>
+  <text x="1260" y="581" class="mini">风险：系统复杂度与学习曲线更高</text>
+
+  <rect x="1235" y="620" width="295" height="220" rx="14" fill="#0f172a" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="1260" y="660" class="box-title">Best Fit</text>
+  <text x="1260" y="694" class="label">E2E / QA / 确定性自动化</text>
+  <text x="1260" y="720" class="sub">• 回归测试</text>
+  <text x="1260" y="744" class="sub">• CI 与团队协作</text>
+  <text x="1260" y="768" class="sub">• 可回放调试与可靠执行</text>
+  <text x="1260" y="806" class="mini">风险：开放任务需额外 AI orchestration</text>
+
+  <!-- footer legend -->
+  <rect x="70" y="850" width="1460" height="26" rx="8" fill="rgba(15,23,42,0.78)" stroke="#334155" stroke-width="1"/>
+  <circle cx="95" cy="863" r="5" fill="#22d3ee"/><text x="108" y="867" class="legend">browser-harness = ultra-thin runtime</text>
+  <circle cx="425" cy="863" r="5" fill="#34d399"/><text x="438" y="867" class="legend">browser-use = full agent framework</text>
+  <circle cx="758" cy="863" r="5" fill="#fbbf24"/><text x="771" y="867" class="legend">Playwright = deterministic automation foundation</text>
+  <text x="1155" y="867" class="legend">Source basis: repo code, README, official docs, benchmark pages</text>
+</svg>
